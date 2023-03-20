@@ -1,0 +1,54 @@
+// app global css in SCSS form
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root{
+  --text-gray: rgb(98, 109, 121);
+}
+
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color:#000;
+  background-color: #F3F3F3;
+  font-weight: 400;
+}
+.q-focus-helper{
+  opacity:0.05 !important;
+}
+.q-btn{
+  text-transform: capitalize !important;
+  color: #000000;
+}
+.q-btn.bg-secondary {
+  color: #000000 !important;
+  font-weight: 700;
+}
+.q-item.q-router-link--exact-active .q-icon{
+  color: rgb(21,23,26) !important;
+}
+.q-item.q-router-link--exact-active, .q-item.q-router-link--active .q-item__label {
+    color: rgb(21,23,26);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+    line-height: 19.6px !important;
+}
+
+a{
+  text-decoration: none;
+    color: inherit;
+}
+//* {
+//  user-select: none;
+//}
+
+@font-face {
+  font-family: Inter;
+  font-weight:100 900;
+  src: url(../assets/Inter.ttf) format("truetype-variations");
+}
+
