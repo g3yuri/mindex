@@ -1,13 +1,15 @@
 <template>
-  <q-page class="q-pa-md q-gutter-md">
-    <m-loading ref="main">
-      <div class="row q-col-gutter-md">
-        <div :key="index" v-for="(el, index) in roles" class="col-4">
-          {{ el.name }}
-        </div>
-      </div>
-    </m-loading>
-  </q-page>
+  <m-loading ref="main" style="height: 100%">
+    <m-table
+      :columns="[
+        { field: 'name', label: 'Role' },
+        { field: 'cantidad', label: 'Cantidad' },
+        { field: 'descripcion', label: 'Descripcion' }
+      ]"
+      :data="list_data"
+      v-bind="{ dense: false }"
+    />
+  </m-loading>
 </template>
 <script setup>
 import { ref, reactive, onMounted, computed, watchEffect, watch } from 'vue'
@@ -18,7 +20,8 @@ const route = useRoute(),
   router = useRouter(),
   qs = useQuasar(),
   roles = ref([]),
-  main = ref(null)
+  main = ref(null),
+  list_data = ref([])
 
 const meta = reactive({
   title: 'Roles'

@@ -6,14 +6,23 @@
   "author": "Yuri Quispe <g3yuri@gmail.com>",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.ts,.vue ./",
-    "test": "echo \"No test specified\" && exit 0"
+    "dev": "quasar dev",
+    "build": "npm run build-pwa",
+    "test": "npx playwright test",
+    "test-rep": "npx playwright show-report",
+    "build-only": "quasar build",
+    "build-spa": "quasar build && rsync -zr --delete ./dist/spa/ ene:/www/wwwroot/gmi.gd.pe/spa/",
+    "build-pwa": "quasar build -m pwa && rsync -zr ./dist/pwa/ ene:/www/wwwroot/gmi.gd.pe/pwa/",
+    "icon-pwa": "icongenie g -m pwa -i ./src/assets/logo.png",
+    "icon": "icongenie g -i ./src/assets/logo.png",
+    "lint": "eslint --ext .js,.ts,.vue ./"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "dayjs": "^1.11.7",
     "echarts": "^5.4.1",
     "quasar": "^2.6.0",
+    "v-viewer": "^3.0.11",
     "vue": "^3.0.0",
     "vue-echarts": "^6.5.4",
     "vue-router": "^4.0.0"

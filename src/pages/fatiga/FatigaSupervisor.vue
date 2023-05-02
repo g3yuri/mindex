@@ -273,10 +273,11 @@
           v-for="(dy, clave) in days"
           :key="clave"
           :class="`t-p-1 t-h-14 t-w-1/5 t-text-center`"
-          @click="()=>{
-            dl.link = el.datos[dy.fecha]?.link ?? []
-            dl.show = true
-          }
+          @click="
+            () => {
+              dl.link = el.datos[dy.fecha]?.link ?? []
+              dl.show = true
+            }
           "
         >
           <div
@@ -468,6 +469,7 @@ function reload() {
           e.datos[k].descanso_fm = `${Math.floor(tm / 60)}:${
             tm - 60 * Math.floor(tm / 60)
           }`
+          // prettier-ignore
           e.datos[k].clase =
             't-w-full t-h-full t-flex t-justify-center t-items-center t-text-lg ' +
             (e.datos[k].descanso < 270

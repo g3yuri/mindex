@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh lpR lFf">
-    <q-header class="t-bg-gray-100">
+    <q-header>
       <q-toolbar>
         <q-btn
           flat
@@ -21,7 +21,7 @@
           <div class="t-flex t-items-center t-justify-between">
             <div
               :class="`${
-                meta.title?.length > (meta.btn ? 10 : 15) && qs.screen.lt.sm
+                meta.title?.length > (meta?.btn ? 10 : 15) && qs.screen.lt.sm
                   ? 'text-h3'
                   : 'text-h2'
               } t-font-bold t-pr-6 t-text-ellipsis t-overflow-hidden`"
@@ -38,7 +38,7 @@
                 :icon="meta.btn.icon"
                 :to="meta.btn.to"
                 :flat="meta.btn.flat"
-                @click="meta.btn.click"
+                @click="meta?.btn?.click()"
               />
             </div>
           </div>
@@ -63,45 +63,85 @@
           <div class="t-pl-2 t-text-2xl t-font-bold">Mindex</div>
         </div>
       </div>
-      <q-list>
-        <q-item clickable to="/perfil" :dense="false">
-          <q-item-section avatar style="min-width: 36px">
-            <q-avatar :color="info.color" text-color="white" size="md">
-              {{ info.letter }}
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label class="t-text-sm">
-              <div>{{ $m.state.user.email }}</div>
-              <div>
-                {{ $m.state.user.nombres + " " + $m.state.user.apellidos }}
-              </div>
-            </q-item-label>
-          </q-item-section>
-        </q-item>
-        <template v-for="(section, sidx) in menu" :key="sidx">
-          <template v-if="section.ok">
-            <q-item-label v-if="section.title" header>{{
+      <div class="panel-menu">
+        <q-list>
+          <q-item clickable to="/perfil" :dense="false">
+            <q-item-section avatar style="min-width: 36px">
+              <q-avatar :color="info.color" text-color="white" size="md">
+                {{ info.letter }}
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label class="t-text-sm">
+                <div>{{ $m.state.user.email }}</div>
+                <div>
+                  {{ $m.state.user.nombres + ' ' + $m.state.user.apellidos }}
+                </div>
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+          <!-- <template v-for="(section, sidx) in menu" :key="sidx">
+            <template v-if="section.ok">
+              <q-item-label v-if="section.title" header>{{
+                section.title
+              }}</q-item-label>
+              <q-item
+                v-for="(el, index) in section.items"
+                :key="index"
+                clickable
+                :to="el.to"
+                :dense="false"
+              >
+                <q-item-section avatar style="min-width: 36px">
+                  <q-icon color="grey-6" :name="el.icon" size="md" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label class="t-text-md">{{ el.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+              <q-separator v-if="section.title" />
+            </template>
+          </template> -->
+
+          <template v-for="(section, sidx) in list_main">
+            <q-item-label v-if="section.title" header :key="sidx">{{
               section.title
             }}</q-item-label>
             <q-item
               v-for="(el, index) in section.items"
-              :key="index"
+              :key="'e-' + index"
               clickable
               :to="el.to"
-              :dense="false"
+              :dense="true"
             >
-              <q-item-section avatar style="min-width: 36px">
-                <q-icon color="grey-6" :name="el.icon" size="md" />
+              <q-item-section avatar>
+                <q-icon :name="el.icon" size="sm" />
               </q-item-section>
               <q-item-section>
-                <q-item-label class="t-text-md">{{ el.label }}</q-item-label>
+                <q-item-label>{{ el.label }}</q-item-label>
               </q-item-section>
             </q-item>
-            <q-separator v-if="section.title" />
           </template>
-        </template>
-      </q-list>
+
+          <q-item
+            clickable
+            to="/logout"
+            :dense="true"
+            style="
+              border-top: 1px solid #aaa;
+              padding-top: 8px;
+              margin-top: 8px;
+            "
+          >
+            <q-item-section avatar>
+              <q-icon name="o_logout" size="sm" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Salir</q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
     </q-drawer>
     <q-page-container style="height: 100vh; overflow: auto">
       <router-view ref="central" v-slot="{ Component }">
@@ -115,9 +155,7 @@
         :inline-label="!qs.screen.lt.md"
         class="t-flex-1 t-text-black"
         align="justify"
-        active-class="t-bg-gray-200"
         switch-indicator
-        indicator-color="black"
       >
         <q-route-tab
           v-for="(el, index) in meta?.footer"
@@ -136,10 +174,13 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, watchEffect, isRef } from 'vue'
+import { ref, computed, watch, watchEffect, isRef, reactive } from 'vue'
 import helper from '../boot/helper'
 import { useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
+
+const menu_select = ref(null)
+
 const route = useRoute(),
   router = useRouter()
 const tab = ref(''),
@@ -167,6 +208,146 @@ const meta = computed(() => {
   return { ...route.meta, ...view.value?.meta }
 })
 
+const TopMenu = [
+  {
+    title: 'SEGURIDAD',
+    menu: [
+      {
+        roles: ['admin', 'seguridad', 'supervisor'],
+        items: [
+          {
+            to: '/inspec/home',
+            label: 'Reporte Diario de Seguridad',
+            icon: 'o_report_problem'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'CONTROL DE FATIGA',
+    menu: [
+      {
+        roles: ['admin', 'seguridad', 'supervisor'],
+        items: [
+          {
+            to: '/fatiga/admin',
+            label: 'Administracion Fatiga',
+            icon: 'o_hotel'
+          },
+          {
+            to: '/fatiga/supervisor',
+            label: 'Control de Fatiga',
+            icon: 'o_watch'
+          }
+        ]
+      },
+      {
+        roles: ['admin', 'fatiga'],
+        items: [{ to: '/fatiga/reporte', label: 'Fatiga', icon: 'o_person' }]
+      },
+      {
+        roles: ['admin', 'operador'],
+        items: [
+          { to: '/f/inicio', label: 'Reporte de Conductor', icon: 'o_person' }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'ADMINISTRACION',
+    menu: [
+      {
+        roles: ['admin'],
+        items: [
+          { to: '/admin', label: 'Usuarios', icon: 'o_person' },
+          { to: '/mailer', label: 'Mailer', icon: 'o_mail' }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'SIG',
+    menu: [
+      {
+        roles: ['admin', 'supervisor'],
+        items: [
+          {
+            to: '/panel',
+            label: 'Documentos SIG',
+            icon: 'o_picture_in_picture'
+          },
+          {
+            to: '/oper/personal',
+            label: 'Personal',
+            icon: 'o_group',
+            dev: true
+          }
+        ]
+      },
+      {
+        roles: ['admin', 'ssomac', 'supervisor'],
+        items: [
+          { to: '/rrhh/personal', label: 'Personal Admin', icon: 'o_group' }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'SUPERVISOR',
+    menu: [
+      {
+        roles: ['admin', 'supervisor', 'seguridad'],
+        items: [
+          {
+            to: '/oper/racs/home',
+            label: 'RACS',
+            icon: 'o_report'
+          },
+          {
+            to: '/oper/petar',
+            label: 'PETAR',
+            icon: 'o_emergency'
+          },
+          {
+            to: '/oper/veo',
+            label: 'VEO',
+            icon: 'o_verified',
+            dev: true
+          }
+        ]
+      },
+      {
+        roles: ['productividad', 'admin', 'supervisor'],
+        items: [
+          // { to:'/planos/home', label:'Planos', icon:'o_map' }
+          { to: '/plano', label: 'Planos', icon: 'o_where_to_vote' }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'CAPACITACION',
+    menu: [
+      {
+        roles: ['capacitacion', 'admin', 'seguridad'],
+        items: [
+          {
+            to: '/capa/admin',
+            label: 'Administrar',
+            icon: 'o_local_library'
+          },
+          {
+            to: '/capa/home',
+            label: 'Mis Capacitaciones',
+            icon: 'o_auto_stories'
+          }
+        ]
+      }
+    ]
+  }
+]
+
 const menu = [
   {
     roles: ['admin', 'seguridad', 'supervisor'],
@@ -181,33 +362,8 @@ const menu = [
         label: 'Administracion Fatiga',
         icon: 'o_perm_contact_calendar'
       }
-      // {
-      //   to: "/sso/veo",
-      //   label: "VEO / SSO",
-      //   icon: "o_perm_contact_calendar",
-      // },
     ]
   },
-  // {
-  //   roles: ["admin", "seguridad", "supervisor"],
-  //   items: [
-  //     {
-  //       to: "/inspec/super/home",
-  //       label: "Reporte Operacion",
-  //       icon: "o_people",
-  //     },
-  //     {
-  //       to: "/infra",
-  //       label: "INFRAESTRUCTURA",
-  //       icon: "o_people",
-  //     },
-  //     {
-  //       to: "/equipos",
-  //       label: "EQUIPOS",
-  //       icon: "o_people",
-  //     },
-  //   ],
-  // },
   {
     roles: ['admin'],
     items: [
@@ -266,29 +422,6 @@ const menu = [
     roles: ['sig', 'admin'],
     items: [{ to: '/panel', label: 'Panel', icon: 'o_picture_in_picture' }]
   },
-
-  // {
-  //   roles: ["sig", "admin"],
-  //   items: [{ to: "/doc/pets", label: "Pets", icon: "o_picture_in_picture" }],
-  // },
-  // {
-  //   roles: ["sig", "admin"],
-  //   items: [
-  //     { to: "/doc/estandar", label: "Estandar", icon: "o_picture_in_picture" },
-  //   ],
-  // },
-  // {
-  //   roles: ["sig", "admin"],
-  //   items: [
-  //     { to: "/doc/sig/msds", label: "Msds", icon: "o_picture_in_picture" },
-  //   ],
-  // },
-  // {
-  //   roles: ["sig", "admin"],
-  //   items: [
-  //     { to: "/doc/sig/panel", label: "Panel", icon: "o_picture_in_picture" },
-  //   ],
-  // },
   {
     roles: ['admin', 'alpayana'],
     items: [{ to: '/fotocheck/home', label: 'Fotocheck', icon: 'o_person' }]
@@ -313,9 +446,7 @@ const menu = [
   },
   {
     roles: ['admin', 'ssomac', 'supervisor'],
-    items: [
-      { to: '/rrhh/personal', label: 'Personal Admin', icon: 'o_person' }
-    ]
+    items: [{ to: '/rrhh/personal', label: 'Personal Admin', icon: 'o_person' }]
   },
   {
     roles: ['admin', 'seguridad', 'ssomac'],
@@ -329,16 +460,36 @@ const menu = [
 
 const leftDrawerOpen = ref(false)
 const roles = helper.state.user?.roles?.map((e) => e.name) || []
-menu.forEach((e) => {
-  e.ok =
-    e.roles.filter(function (n) {
-      return roles.indexOf(n) !== -1
-    }).length > 0
+// menu.forEach((e) => {
+//   e.ok =
+//     e.roles.filter(function (n) {
+//       return roles.indexOf(n) !== -1
+//     }).length > 0
+// })
+TopMenu.forEach((e) => {
+  e.items = []
+  e.menu.forEach((m) => {
+    // check if element is  include in array
+    if (
+      m.roles.filter(function (n) {
+        return roles.indexOf(n) !== -1
+      }).length > 0
+    ) {
+      m.items.forEach((i) => {
+        if (i.dev && !process.env.DEV) {
+          return
+        }
+        e.items.push(i)
+      })
+    }
+  })
 })
 
-helper.menu = menu
+const list_main = reactive(TopMenu.filter((e) => e.items.length > 0))
 
-function toggleLeftDrawer () {
+helper.menu = TopMenu
+
+function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>

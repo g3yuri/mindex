@@ -5,18 +5,18 @@ const routes: RouteRecordRaw[] = [
     path: '/f',
     component: () => import('layouts/FatigaLayout.vue'),
     children: [
-      { path: 'fatiga', component: () => import('pages/fatiga/Fatiga.vue') },
+      { path: 'fatiga', component: () => import('src/pages/fatiga/FatigaOnly.vue') },
       {
         path: 'registro',
-        component: () => import('pages/fatiga/Registro.vue')
+        component: () => import('src/pages/fatiga/RegistroOnly.vue')
       },
       {
         path: 'politica',
-        component: () => import('pages/fatiga/Politica.vue')
+        component: () => import('src/pages/fatiga/PoliticaOnly.vue')
       },
       {
         path: 'servicio',
-        component: () => import('pages/fatiga/Servicio.vue')
+        component: () => import('src/pages/fatiga/ServicioOnly.vue')
       },
       {
         path: 'ingreso',
@@ -29,7 +29,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'home',
-        component: () => import('pages/fatiga/Home.vue'),
+        component: () => import('src/pages/fatiga/HomeOnly.vue'),
         meta: { no_auth: true }
       },
       {
@@ -39,18 +39,18 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'auth/check',
-        component: () => import('pages/fatiga/Check.vue'),
+        component: () => import('src/pages/fatiga/CheckOnly.vue'),
         meta: { no_auth: true }
       },
       {
         path: 'operador',
-        component: () => import('pages/fatiga/Operador.vue')
+        component: () => import('src/pages/fatiga/OperadorOnly.vue')
       },
       {
         path: 'auth/list',
         component: () => import('pages/fatiga/AuthList.vue')
       },
-      { path: 'day/:fecha', component: () => import('pages/fatiga/Day.vue') }
+      { path: 'day/:fecha', component: () => import('src/pages/fatiga/DayOnly.vue') }
     ],
     meta: {
       guest: true
@@ -60,12 +60,41 @@ const routes: RouteRecordRaw[] = [
     path: '/p',
     component: () => import('layouts/PersonaLayout.vue'),
     children: [
-      { path: 'auth', component: () => import('pages/fatiga/Auth.vue') },
-      { path: 'datos/:dni', component: () => import('pages/fatiga/Datos.vue') }
+      { path: 'auth', component: () => import('src/pages/fatiga/AuthOnly.vue') },
+      { path: 'datos/:dni', component: () => import('src/pages/fatiga/DatosOnly.vue') }
     ],
     meta: {
       guest: true
     }
+  },
+  {
+    path: '/capa',
+    component: () => import('layouts/MainLayout.vue'),
+    meta: {
+      footer: [
+        {
+          to: '/capa/admin',
+          label: 'Admin',
+          icon: 'o_home'
+        },
+        {
+          to: '/capa/cursos',
+          label: 'Cursos',
+          icon: 'o_perm_contact_calendar'
+        },
+        {
+          to: '/capa/certificado',
+          label: 'Diseño',
+          icon: 'o_perm_contact_calendar'
+        }
+      ]
+    },
+    children: [
+      { path: 'admin', component: () => import('src/pages/capa/CapaAdmin.vue') },
+      { path: 'cursos', component: () => import('src/pages/capa/CapaCursos.vue') },
+      { path: 'certificado', component: () => import('src/pages/capa/CapaCertificado.vue') },
+      { path: 'home', component: () => import('src/pages/capa/CapaHome.vue') }
+    ]
   },
   {
     path: '/oper/racs',
@@ -587,7 +616,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/postulante/home',
-        component: () => import('pages/postulante/Postulantes.vue')
+        component: () => import('src/pages/postulante/PostulantesOnly.vue')
       },
       {
         path: '/postulante/nuevo',
@@ -635,7 +664,7 @@ const routes: RouteRecordRaw[] = [
 
       {
         path: '/fatiga/home',
-        component: () => import('pages/fatiga/Fatiga.vue')
+        component: () => import('src/pages/fatiga/FatigaOnly.vue')
       },
       // {
       //   path: "/fatiga/admin",
@@ -663,7 +692,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: '/rrhh/personal',
-        component: () => import('pages/rrhh/Personal.vue')
+        component: () => import('src/pages/rrhh/MxPersonal.vue')
       },
       // INSPEC: Formularios para el reporte de inspectores
       {
@@ -672,15 +701,15 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: '/inspec/day/:zona/:turno/:fecha',
-        component: () => import('pages/inspec/Reporte.vue')
+        component: () => import('src/pages/inspec/InspecReporte.vue')
       },
       {
         path: '/inspec/nivel',
-        component: () => import('pages/inspec/Reporte.vue')
+        component: () => import('src/pages/inspec/InspecReporte.vue')
       },
       {
         path: '/inspec/area',
-        component: () => import('pages/inspec/Reporte.vue')
+        component: () => import('src/pages/inspec/InspecReporte.vue')
       },
       {
         path: '/inspec/obs/edit/:id',
@@ -703,7 +732,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/registro',
-    component: () => import('pages/login/Registro.vue'),
+    component: () => import('src/pages/login/MxRegistro.vue'),
     meta: {
       guest: true
     }
@@ -718,21 +747,21 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/rescue',
-    component: () => import('pages/login/Rescue.vue'),
+    component: () => import('src/pages/login/MxRescue.vue'),
     meta: {
       guest: true
     }
   },
   {
     path: '/logout',
-    component: () => import('pages/login/Logout.vue'),
+    component: () => import('src/pages/login/MxLogout.vue'),
     meta: {
       guest: true
     }
   },
   {
     path: '/rescue/:email/:code',
-    component: () => import('pages/login/RescueCode.vue'),
+    component: () => import('src/pages/login/MxRescueCode.vue'),
     meta: {
       guest: true
     }

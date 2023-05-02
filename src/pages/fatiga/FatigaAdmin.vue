@@ -36,36 +36,36 @@
       </q-card-section>
     </q-card>
   </q-dialog>
+  <q-dialog v-model="dreg.show">
+    <q-card style="max-width: 440px; width: 100%">
+      <m-loading ref="mreg">
+        <q-card-section>
+          <div class="text-h6">Descargar registros</div>
+        </q-card-section>
+        <q-card-section>
+          <q-date v-model="dreg.value" range />
+          <div>{{ dreg.value }}</div>
+        </q-card-section>
+        <q-separator />
+        <q-card-section align="center">
+          <q-btn
+            :disable="!(dreg.value?.from && dreg.value?.to)"
+            label="Descargar"
+            rounded
+            unelevated
+            color="primary"
+            @click="descargar(dreg.value?.from, dreg.value?.to)"
+          />
+        </q-card-section>
+      </m-loading>
+    </q-card>
+  </q-dialog>
   <m-loading
     ref="main"
     class="sm:t-p-3 t-p-0"
     :style="tag === 'personal' && 'height: 100%;'"
   >
     <template v-if="tag === 'personal'">
-      <q-dialog v-model="dreg.show">
-        <q-card style="max-width: 440px; width: 100%">
-          <m-loading ref="mreg">
-            <q-card-section>
-              <div class="text-h6">Descargar registros</div>
-            </q-card-section>
-            <q-card-section>
-              <q-date v-model="dreg.value" range />
-              <div>{{ dreg.value }}</div>
-            </q-card-section>
-            <q-separator />
-            <q-card-section align="center">
-              <q-btn
-                :disable="!(dreg.value?.from && dreg.value?.to)"
-                label="Descargar"
-                rounded
-                unelevated
-                color="primary"
-                @click="descargar(dreg.value?.from, dreg.value?.to)"
-              />
-            </q-card-section>
-          </m-loading>
-        </q-card>
-      </q-dialog>
       <q-table
         flat
         bordered
@@ -187,10 +187,10 @@
             :class="`t-p-1 t-h-14 t-w-1/5 t-text-center`"
             @click="
               () => {
-                dl.link = el[dy.fecha].link;
-                dl.fecha = dy.fecha;
-                dl.dni = el.persona.dni;
-                dl.show = true;
+                dl.link = el[dy.fecha].link
+                dl.fecha = dy.fecha
+                dl.dni = el.persona.dni
+                dl.show = true
               }
             "
           >
@@ -306,12 +306,17 @@ const props = defineProps({
 })
 
 const meta = computed(() => ({
-  title: `${props.scope}`,
+  title: `${
+    typeof props.scope === 'string'
+      ? props.scope.charAt(0).toUpperCase() + props.scope.slice(1)
+      : ''
+  }`,
   btn: {
     label: 'Exportar',
     icon: 'o_add',
     click: () => {
       dreg.show = true
+      console.log('aqui:', dreg.show)
     }
   }
 }))
@@ -358,6 +363,7 @@ function reload() {
             e[k].descanso_fm = `${Math.floor(tm / 60)}:${
               tm - 60 * Math.floor(tm / 60)
             }`
+            // prettier-ignore
             e[k].clase =
               't-rounded-lg t-w-full t-h-full t-flex t-justify-center t-items-center t-text-lg ' +
               (e[k].descanso < 270

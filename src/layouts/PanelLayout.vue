@@ -9,7 +9,7 @@
             <q-space />
             <div v-if="$m.state.user" style="font-family: Supply-Regular;color: rgb(255,180,45);">{{$m.state.user.email}}</div>
             <q-btn v-else label="Acceder" flat @click="$router.push('/login')" icon="login" rounded unelevated class="t-text-white"/>
-            
+
           </div>
         </q-toolbar-title>
       </q-toolbar>

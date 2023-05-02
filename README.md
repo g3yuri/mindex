@@ -90,6 +90,14 @@ Para configurar el nginx referirse a: <https://quasar.dev/quasar-cli-webpack/dev
 - Para crear el icono de la aplicacion `icongenie g -i ./src/assets/logo.png`
 - Para el modo PWA `icongenie g -m pwa -i ./src/assets/logo.png`
 
+## Paquete para visualización de imagenes v-viewer
+
+Instalar con el siguiente comando, si se instala sin el next, se instala una version anterior que no funciona
+
+```bash
+npm i v-viewer@next
+```
+
 ## Echart
 
 Graficos de barras lineas etc, ref: <https://github.com/ecomfe/vue-echarts#readme>

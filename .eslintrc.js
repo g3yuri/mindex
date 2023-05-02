@@ -62,6 +62,7 @@ module.exports = {
 
   // add your custom rules here
   rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
     'no-empty-function': 'off',
     '@typescript-eslint/no-empty-function': 'error',
     // allow async-await

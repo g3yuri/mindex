@@ -289,6 +289,11 @@ const route = useRoute(),
   main = ref(null),
   tab = ref('reporte')
 
+const meta = reactive({
+  title: 'Reporte'
+})
+defineExpose({ meta })
+
 onMounted(() => {
   main.value.get('/labor/resumen', (b) => {
     console.log('labor.resumen', b)
