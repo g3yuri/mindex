@@ -1,11 +1,15 @@
 <template>
-  <q-page class="q-pa-md q-gutter-md">
-    <div>
-      <div class="row q-col-gutter-md">
-        <div class="col-4">CAPA HOME</div>
-      </div>
-    </div>
-  </q-page>
+  <m-loading ref="main" style="height: 100%">
+    <m-table
+      :data="list"
+      :columns="[
+        { field: 'dni', label: 'dni' },
+        { field: 'curso', label: 'Curso' },
+        { field: 'fecha', label: 'fecha' }
+      ]"
+      v-bind="{ dense: false }"
+    />
+  </m-loading>
 </template>
 <script setup>
 import {
@@ -23,9 +27,21 @@ import { useQuasar } from 'quasar'
 const route = useRoute(),
   router = useRouter(),
   qs = useQuasar(),
-  meta = reactive({})
+  main = ref(null),
+  meta = reactive({
+    title: 'Cursos'
+  }),
+  list = ref([])
 // const props = defineProps(['foo'])
 defineExpose({ meta })
 
-onMounted(() => {})
+function reload() {
+  main.value?.get('/capa/certificado/list', (b) => {
+    list.value = b.cursos
+  })
+}
+
+onMounted(() => {
+  reload()
+})
 </script>

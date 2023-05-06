@@ -67,7 +67,7 @@
               outlined
               v-model="dl.value.curso"
               label="Cursos"
-              option-value="id"
+              option-value="curso"
               option-label="curso"
               use-input
               emit-value
@@ -77,6 +77,7 @@
               input-debounce="0"
               :options="cursos_list"
               @filter="filterFn"
+              @update:model-value="showing"
             >
               <template v-slot:no-option>
                 <q-item>
@@ -207,10 +208,11 @@ function reload() {
   })
 }
 
+function showing() {
+  console.log('select.update', dl.value)
+}
+
 onMounted(() => {
-  // reload()
-  main.value?.get('/test', (b) => {
-    console.log('original', b)
-  })
+  reload()
 })
 </script>

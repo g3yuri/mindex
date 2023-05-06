@@ -50,6 +50,7 @@ function upload(file) {
 onMounted(() => {
   main.value?.get('/capa/certificado/init', (b) => {
     data.src = b.uri
+    console.log('uri', b.uri)
   })
 })
 </script>

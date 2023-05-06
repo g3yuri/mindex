@@ -123,10 +123,15 @@ const props = defineProps({
     default: 'top'
   }
 })
-const list = ref([])
-watch(props.data, () => {
-  list.value = [...props.data]
-  console.log('algo: ', list)
+// const list = ref([])
+// watch(props.data, () => {
+//   list.value = [...props.data]
+//   console.log('algo: ', list)
+// })
+// CON EL WATCH NO RESULTABA EL CAMBIO
+const list = computed(() => {
+  // return [...props.data]
+  return props.data
 })
 
 const columns = computed(() => {
@@ -142,7 +147,7 @@ const columns = computed(() => {
 defineExpose({ meta })
 
 onMounted(() => {
-  list.value = [...props.data]
+  // list.value = [...props.data]
   console.log('algo: ', list)
 })
 </script>
