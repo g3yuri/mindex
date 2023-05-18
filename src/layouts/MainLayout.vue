@@ -327,8 +327,18 @@ const TopMenu = [
     ]
   },
   {
-    title: 'CAPACITACION',
+    title: 'CONOCIMIENTO',
     menu: [
+      {
+        roles: ['user'],
+        items: [
+          {
+            to: '/info/directorio',
+            label: 'Directorio',
+            icon: 'o_local_library'
+          }
+        ]
+      },
       {
         roles: ['capacitacion', 'admin', 'seguridad'],
         items: [

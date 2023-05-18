@@ -309,6 +309,17 @@ const routes: RouteRecordRaw[] = [
   },
 
   {
+    path: '/info/directorio',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('pages/info/InfoDirectorio.vue')
+      }
+    ]
+  },
+
+  {
     path: '/sso/veo',
     component: () => import('layouts/MainLayout.vue'),
     meta: {
