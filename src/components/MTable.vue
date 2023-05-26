@@ -19,6 +19,7 @@
     <!-- <template #top-left>
         <slot name="top-left"></slot>
       </template> -->
+
     <template #[props.landSearch]>
       <q-input
         v-model="filter"
@@ -40,6 +41,9 @@
 
     <template #body="props" v-if="slots.body">
       <slot name="body" v-bind="props" />
+    </template>
+    <template #header="props" v-if="slots.header">
+      <slot name="header" v-bind="props" />
     </template>
 
     <!-- <template #body="props">

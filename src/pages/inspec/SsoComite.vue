@@ -2,40 +2,41 @@
   <m-loading ref="main" style="height: 100%">
     <m-table
       :data="list"
+      dense
       :columns="[
         { field: 'fecha', label: 'Fecha' },
-        { field: 'pedido', label: 'Pedido' },
         { field: 'resp', label: 'Responsable' },
         { field: 'plazo', label: 'Plazo' },
-        { field: 'estado', label: 'Estado' },
-        { field: 'obs', label: 'Observacion' }
+        { field: 'mes', label: 'Mes' },
+        { field: 'pedido', label: 'Pedido' }
       ]"
       v-bind="{ dense: false }"
     >
+      <template v-slot:header="props">
+        <q-tr :props="props">
+          <q-th :key="props.cols[0].field" :props="props">
+            {{ props.cols[0].label }}
+          </q-th>
+          <q-th :key="props.cols[1].field" :props="props">
+            {{ props.cols[1].label }}
+          </q-th>
+        </q-tr>
+      </template>
+
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="fecha" :props="props">
-            {{ props.row.fecha }}
+            <div class="t-font-bold">{{ props.row.fecha }}</div>
+            <div class="t-overflow-hidden t-whitespace-normal">
+              {{ props.row.resp }}
+            </div>
+            <div :class="props.row.estado_class">
+              {{ props.row.plazo }}
+            </div>
           </q-td>
           <q-td key="pedido" :props="props">
             <div class="t-overflow-hidden t-whitespace-normal">
               {{ props.row.pedido }}
-            </div>
-          </q-td>
-          <q-td key="resp" :props="props">
-            <div class="t-overflow-hidden t-whitespace-normal">
-              {{ props.row.resp }}
-            </div>
-          </q-td>
-          <q-td key="plazo" :props="props">
-            {{ props.row.plazo }}
-          </q-td>
-          <q-td key="estado" :props="props">
-            {{ props.row.estado }}
-          </q-td>
-          <q-td key="obs" :props="props">
-            <div class="t-overflow-hidden t-whitespace-normal">
-              {{ props.row.obs }}
             </div>
           </q-td>
         </q-tr>
@@ -55,6 +56,7 @@ import {
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
+import dayjs from 'dayjs'
 
 const route = useRoute(),
   router = useRouter(),
@@ -218,6 +220,12 @@ const route = useRoute(),
       obs: ''
     }
   ])
+list.value.forEach((e) => {
+  e.estado_class =
+    dayjs().diff(e.plazo) > 0
+      ? 't-bg-red-500 t-text-white t-text-center t-rounded-lg'
+      : 't-bg-yellow-300 t-font-bold t-text-center t-rounded-lg'
+})
 // const props = defineProps(['foo'])
 defineExpose({ meta })
 
