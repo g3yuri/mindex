@@ -359,6 +359,26 @@ const routes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/sso',
+    component: () => import('layouts/MainLayout.vue'),
+    meta: {
+      footer: [
+        {
+          to: '/sso/comite',
+          label: 'Comite',
+          icon: 'o_home'
+        }
+      ]
+    },
+    children: [
+      {
+        path: 'comite',
+        component: () => import('pages/inspec/SsoComite.vue'),
+        props: { zona: 'cuerpos' }
+      }
+    ]
+  },
+  {
     path: '/plano',
     component: () => import('layouts/MainLayout.vue'),
     redirect: '/plano/cuerpos',

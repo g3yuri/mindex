@@ -219,6 +219,11 @@ const TopMenu = [
             to: '/inspec/home',
             label: 'Reporte Diario de Seguridad',
             icon: 'o_report_problem'
+          },
+          {
+            to: '/sso/comite',
+            label: 'Seguimiento comite',
+            icon: 'o_report_problem'
           }
         ]
       }
