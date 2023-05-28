@@ -51,7 +51,7 @@
       show-if-above
       bordered
       :breakpoint="800"
-      class="t-bg-gray-100"
+      class="t-bg-slate-100"
       :width="280"
     >
       <div @click="router.push('/')">

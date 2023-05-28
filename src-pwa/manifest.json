@@ -1,6 +1,6 @@
 {
-  "name": "App Mindex",
-  "short_name": "App  Mindex",
+  "name": "Mindex Web",
+  "short_name": "Mindex Web",
   "description": "Proyecto para la gestion de SSO",
   "display": "standalone",
   "orientation": "portrait",

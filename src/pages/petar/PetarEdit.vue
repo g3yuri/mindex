@@ -122,7 +122,7 @@ const route = useRoute(),
   router = useRouter(),
   qs = useQuasar(),
   info = reactive({
-    fecha: dayjs().format('YYYY-MM-DD'),
+    fecha: dayjs().format('YYYY-MM-DD HH:mm'),
     area: helper.state.user.area,
     actividad: 'Soldadura en taller',
     nivel: '12B',
@@ -170,5 +170,9 @@ function eliminar() {
   })
 }
 
-onMounted(() => {})
+onMounted(() => {
+  main.value?.get('/petar/init', (b) => {
+    info.fecha = b.hoy
+  })
+})
 </script>

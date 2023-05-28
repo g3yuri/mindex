@@ -1,8 +1,8 @@
 {
   "name": "mindex",
-  "version": "0.0.1",
-  "description": "Mindex App",
-  "productName": "Mindex",
+  "version": "0.0.2",
+  "description": "Mindex Web",
+  "productName": "Mindex Web",
   "author": "Yuri Quispe <g3yuri@gmail.com>",
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
     "test-rep": "npx playwright show-report",
     "build-only": "quasar build",
     "build-spa": "quasar build && rsync -zr --delete ./dist/spa/ ene:/www/wwwroot/gmi.gd.pe/spa/",
-    "build-pwa": "quasar build -m pwa && rsync -zr ./dist/pwa/ ene:/www/wwwroot/gmi.gd.pe/pwa/",
+    "build-pwa": "quasar build -m pwa && rsync -zr --delete --exclude=.well-known ./dist/pwa/ ene:/www/wwwroot/gmi.gd.pe/pwa/",
     "icon-pwa": "icongenie g -m pwa -i ./src/assets/logo.png",
     "icon": "icongenie g -i ./src/assets/logo.png",
     "lint": "eslint --ext .js,.ts,.vue ./"
