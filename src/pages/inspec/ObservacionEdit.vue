@@ -192,6 +192,14 @@
       class="row q-col-gutter-md q-pa-md"
     >
       <div class="col-12">
+        <q-checkbox
+          v-model="obs.pare"
+          true-value="1"
+          false-value="0"
+          label="Se realizo PARE"
+        />
+      </div>
+      <div class="col-12">
         <q-checkbox v-model="levantado" label="Fue levantado la observacion" />
       </div>
       <div class="col-12" v-if="levantado">
@@ -260,6 +268,7 @@ const route = useRoute(),
 
 const obs = reactive({
     riesgo: 'medio',
+    pare: 0,
     ...route.query,
     area_rep: helper.state.user.area
   }),
@@ -331,6 +340,7 @@ function save() {
     'fecha',
     'turno',
     'tipo',
+    'pare',
     'info',
     'fecha_accion',
     'accion',
@@ -338,6 +348,7 @@ function save() {
   ]
   const payload = {}
   console.log('save.obs', obs)
+
   for (const p of props) {
     payload[p] = obs[p] ?? null
   }

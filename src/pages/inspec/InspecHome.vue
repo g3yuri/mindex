@@ -59,10 +59,19 @@
                 @click="router.push(`/inspec/day/cuerpos/dia/${el.day}`)"
               >
                 <div
-                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center ${el.class_cuerpos_dia}`"
+                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center t-relative ${el.class_cuerpos_dia}`"
                 >
                   <div class="t-font-bold t-text-xl">
                     {{ el.cuerpos_dia?.cant }}
+                  </div>
+                  <div
+                    v-if="
+                      el.cuerpos_dia?.cant_pare &&
+                      el.cuerpos_dia?.cant_pare != '0'
+                    "
+                    class="t-absolute t-top-0 t-right-0 t-bg-red-500 t-text-white t-rounded-full t-w-5 t-h-5 t-text-sm t-font-bold"
+                  >
+                    {{ el.cuerpos_dia?.cant_pare }}
                   </div>
                 </div>
               </div>
@@ -71,10 +80,19 @@
                 @click="router.push(`/inspec/day/cuerpos/noche/${el.day}`)"
               >
                 <div
-                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center ${el.class_cuerpos_noche}`"
+                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center t-relative ${el.class_cuerpos_noche}`"
                 >
                   <div class="t-font-bold t-text-xl">
                     {{ el.cuerpos_noche?.cant }}
+                  </div>
+                  <div
+                    v-if="
+                      el.cuerpos_noche?.cant_pare &&
+                      el.cuerpos_noche?.cant_pare != '0'
+                    "
+                    class="t-absolute t-top-0 t-right-0 t-bg-red-500 t-text-white t-rounded-full t-w-5 t-h-5 t-text-sm t-font-bold"
+                  >
+                    {{ el.cuerpos_noche?.cant_pare }}
                   </div>
                 </div>
               </div>
@@ -83,10 +101,18 @@
                 @click="router.push(`/inspec/day/vetas/dia/${el.day}`)"
               >
                 <div
-                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center ${el.class_vetas_dia}`"
+                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center t-relative ${el.class_vetas_dia}`"
                 >
                   <div class="t-font-bold t-text-xl">
                     {{ el.vetas_dia?.cant }}
+                  </div>
+                  <div
+                    v-if="
+                      el.vetas_dia?.cant_pare && el.vetas_dia?.cant_pare != '0'
+                    "
+                    class="t-absolute t-top-0 t-right-0 t-bg-red-500 t-text-white t-rounded-full t-w-5 t-h-5 t-text-sm t-font-bold"
+                  >
+                    {{ el.vetas_dia?.cant_pare }}
                   </div>
                 </div>
               </div>
@@ -95,10 +121,19 @@
                 @click="router.push(`/inspec/day/vetas/noche/${el.day}`)"
               >
                 <div
-                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center ${el.class_vetas_noche}`"
+                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center t-relative ${el.class_vetas_noche}`"
                 >
                   <div class="t-font-bold t-text-xl">
                     {{ el.vetas_noche?.cant }}
+                  </div>
+                  <div
+                    v-if="
+                      el.vetas_noche?.cant_pare &&
+                      el.vetas_noche?.cant_pare != '0'
+                    "
+                    class="t-absolute t-top-0 t-right-0 t-bg-red-500 t-text-white t-rounded-full t-w-5 t-h-5 t-text-sm t-font-bold"
+                  >
+                    {{ el.vetas_noche?.cant_pare }}
                   </div>
                 </div>
               </div>
@@ -149,10 +184,19 @@
                 @click="router.push(`/inspec/day/superficie/dia/${el.day}`)"
               >
                 <div
-                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center ${el.class_superficie_dia}`"
+                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center t-relative ${el.class_superficie_dia}`"
                 >
                   <div class="t-font-bold t-text-xl">
                     {{ el.superficie_dia?.cant }}
+                  </div>
+                  <div
+                    v-if="
+                      el.superficie_dia?.cant_pare &&
+                      el.superficie_dia?.cant_pare != '0'
+                    "
+                    class="t-absolute t-top-0 t-right-0 t-bg-red-500 t-text-white t-rounded-full t-w-5 t-h-5 t-text-sm t-font-bold"
+                  >
+                    {{ el.superficie_dia?.cant_pare }}
                   </div>
                 </div>
               </div>
@@ -161,10 +205,19 @@
                 @click="router.push(`/inspec/day/nivel23/dia/${el.day}`)"
               >
                 <div
-                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center ${el.class_nivel23_dia}`"
+                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center t-relative ${el.class_nivel23_dia}`"
                 >
                   <div class="t-font-bold t-text-xl">
                     {{ el.nivel23_dia?.cant }}
+                  </div>
+                  <div
+                    v-if="
+                      el.nivel23_dia?.cant_pare &&
+                      el.nivel23_dia?.cant_pare != '0'
+                    "
+                    class="t-absolute t-top-0 t-right-0 t-bg-red-500 t-text-white t-rounded-full t-w-5 t-h-5 t-text-sm t-font-bold"
+                  >
+                    {{ el.nivel23_dia?.cant_pare }}
                   </div>
                 </div>
               </div>
@@ -173,10 +226,19 @@
                 @click="router.push(`/inspec/day/nivel23/noche/${el.day}`)"
               >
                 <div
-                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center ${el.class_nivel23_noche}`"
+                  :class="`t-rounded-lg t-h-full t-w-full t-flex t-items-center t-justify-center t-text-center t-relative ${el.class_nivel23_noche}`"
                 >
                   <div class="t-font-bold t-text-xl">
                     {{ el.nivel23_noche?.cant }}
+                  </div>
+                  <div
+                    v-if="
+                      el.nivel23_noche?.cant_pare &&
+                      el.nivel23_noche?.cant_pare != '0'
+                    "
+                    class="t-absolute t-top-0 t-right-0 t-bg-red-500 t-text-white t-rounded-full t-w-5 t-h-5 t-text-sm t-font-bold"
+                  >
+                    {{ el.nivel23_noche?.cant_pare }}
                   </div>
                 </div>
               </div>
