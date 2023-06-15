@@ -103,24 +103,32 @@
             </template>
           </template> -->
 
-          <template v-for="(section, sidx) in list_main">
-            <q-item-label v-if="section.title" header :key="sidx">{{
-              section.title
-            }}</q-item-label>
-            <q-item
-              v-for="(el, index) in section.items"
-              :key="'e-' + index"
-              clickable
-              :to="el.to"
-              :dense="true"
-            >
-              <q-item-section avatar>
-                <q-icon :name="el.icon" size="sm" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>{{ el.label }}</q-item-label>
-              </q-item-section>
-            </q-item>
+          <template v-for="(section, sidx) in list_main" :key="sidx">
+            <q-list class="rounded-borders">
+              <q-expansion-item
+                dense
+                :label="section.title"
+                header-class="t-text-gray-500"
+              >
+                <!-- <q-item-label v-if="section.title" header
+                  >{{ section.title }} XX</q-item-label
+                > -->
+                <q-item
+                  v-for="(el, index) in section.items"
+                  :key="'e-' + index"
+                  clickable
+                  :to="el.to"
+                  :dense="true"
+                >
+                  <q-item-section avatar>
+                    <q-icon :name="el.icon" size="sm" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>{{ el.label }}</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-expansion-item>
+            </q-list>
           </template>
 
           <q-item
@@ -272,7 +280,7 @@ const TopMenu = [
     ]
   },
   {
-    title: 'SIG',
+    title: 'SISTEMA INTEGRADO DE GESTION',
     menu: [
       {
         roles: ['admin', 'supervisor'],

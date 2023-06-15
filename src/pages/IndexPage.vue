@@ -3,6 +3,9 @@
     <div>
       <div class="row q-col-gutter-md">
         <template :key="sidx" v-for="(section, sidx) in menu">
+          <div class="col-12 t-font-bold t-text-gray-400">
+            {{ section.title }}
+          </div>
           <div
             class="col-xs-6 col-sm-4 col-md-3 t-relative t-cursor-pointer"
             :key="index"
