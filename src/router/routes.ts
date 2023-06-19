@@ -808,5 +808,6 @@ const routes: RouteRecordRaw[] = [
     }
   }
 ]
+import sig_routes from './sig-routes'
 
-export default routes
+export default window.location.hostname === 'localhost' || window.location.hostname === 'gmi.neural.pe' ? sig_routes : routes

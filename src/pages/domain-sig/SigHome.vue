@@ -1,0 +1,97 @@
+<template>
+  <q-page class="q-pa-md q-gutter-md">
+    <div class="t-px-4">
+      <div class="row q-col-gutter-md title-ssomac">
+        <!-- <div class="col-sm-6 col-12">
+          <a href="#">Protocolo de emergencia</a>
+        </div> -->
+        <div class="col-sm-6 col-12">
+          <a
+            href="https://gmiperu.sharepoint.com/sites/ESTRUCTURASIGGMI/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FESTRUCTURASIGGMI%2FDocumentos%20compartidos%2FESTRUCTURA%20SIG%20GMI%2F7%2E4%2E%20COMUNICACI%C3%93N%2F3%2E%20Registros%2F2023%2F2%2E%20Paneles%2F1%2E%20Mina&p=true&ct=1687193123648&or=OWA%2DNT&cid=018bcb99%2D79df%2Df469%2D2b79%2Dc534289670f1&ga=1"
+            target="_blank"
+            >Panel Informativo</a
+          >
+          <p>
+            <ul>
+              <li>Politica integrada SSOMAC</li>
+              <li>Objetivos SSOMAC</li>
+              <li>Estadisticas de Seguridad</li>
+              <li>Protocolo ante emergencias PAS</li>
+            </ul>
+          </p>
+        </div>
+        <!-- <div class="col-12">CONTROLES OPERATIVOS</div> -->
+        <div class="col-sm-6 col-12">
+          <a
+            href="https://gmiperu.sharepoint.com/sites/ESTRUCTURASIGGMI/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FESTRUCTURASIGGMI%2FDocumentos%20compartidos%2FESTRUCTURA%20SIG%20GMI%2F6%2E1%2E2%20%20IDENTIF%20DE%20PELIG%2C%20EVALUAC%20DE%20RIESG%20Y%20ASPECT%2F3%2E%20Registros%2F2%2E%20IPERC%20LB%2F2%2E%202023%2F4%2E%20Programa%20Rev%20IPERC%20LB%2F2%2E%20Revision%20IPERC%20%20LB%2FSEM%2D14%20IPERC%20LB%20ACTUALIZADOS&p=true&ct=1687192945708&or=OWA%2DNT&cid=d23318d5%2D5b1e%2Dfdc7%2D6e5f%2D52c407e6961e&ga=1"
+            target="_blank"
+            >IPERC LB</a
+          >
+        </div>
+        <div class="col-sm-6 col-12">
+          <a
+            href="https://gmiperu.sharepoint.com/sites/ESTRUCTURASIGGMI/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FESTRUCTURASIGGMI%2FDocumentos%20compartidos%2FESTRUCTURA%20SIG%20GMI%2F8%2E1%20PLANIFICACI%C3%93N%20Y%20CONTROL%20OPERACIONAL%2F3%2E%20Registros%2F2023%2F1%2E%20Estandares%2F2%2E%20Est%C3%A0ndares%20GMI%2F2%2E%20Vigentes&p=true&ct=1687192522938&or=OWA%2DNT&cid=3ea52f8c%2Dda8c%2D5cd2%2D6dcb%2D6bc59437a69f&ga=1"
+            target="_blank"
+            >Estandares</a
+          >
+        </div>
+        <div class="col-sm-6 col-12">
+          <a
+            href="https://gmiperu.sharepoint.com/sites/ESTRUCTURASIGGMI/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FESTRUCTURASIGGMI%2FDocumentos%20compartidos%2FESTRUCTURA%20SIG%20GMI%2F8%2E1%20PLANIFICACI%C3%93N%20Y%20CONTROL%20OPERACIONAL%2F3%2E%20Registros%2F2023%2F2%2E%20PETS%2F2%2E%20Vigentes&p=true&ct=1687192783372&or=OWA%2DNT&cid=0187e295%2Dfe09%2Da733%2D4167%2Dfd7195a9c4d1&ga=1"
+            target="_blank"
+            >Pets</a
+          >
+        </div>
+        <div class="col-sm-6 col-12">
+          <a
+            href="https://gmiperu.sharepoint.com/sites/ESTRUCTURASIGGMI/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FESTRUCTURASIGGMI%2FDocumentos%20compartidos%2FESTRUCTURA%20SIG%20GMI%2F8%2E1%20PLANIFICACI%C3%93N%20Y%20CONTROL%20OPERACIONAL%2F3%2E%20Registros%2F2023%2F5%2E%20Formatos&p=true&ct=1687192849789&or=OWA%2DNT&cid=859ba0f8%2D517b%2D134c%2D1af5%2D10298533ef93&ga=1"
+            target="_blank"
+            >Formatos</a
+          >
+        </div>
+      </div>
+    </div>
+  </q-page>
+</template>
+<script setup>
+import {
+  ref,
+  reactive,
+  onMounted,
+  computed,
+  watchEffect,
+  watch,
+  useAttrs
+} from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
+
+const route = useRoute(),
+  router = useRouter(),
+  qs = useQuasar(),
+  meta = reactive({})
+// const props = defineProps(['foo'])
+defineExpose({ meta })
+
+onMounted(() => {})
+</script>
+
+<style lang="scss">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .title-ssomac {
+    a {
+      @apply t-font-bold t-text-xl t-text-blue-800 t-bg-slate-200 t-px-4 t-py-2 t-rounded-md;
+    }
+    p {
+      @apply t-mt-4 t-text-slate-600 t-text-lg t-border-slate-200 t-border-l-4;
+      ul{
+        @apply t-list-item t-ml-4
+      }
+    }
+  }
+}
+</style>
