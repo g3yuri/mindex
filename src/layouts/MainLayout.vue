@@ -47,6 +47,7 @@
     </q-header>
 
     <q-drawer
+      v-if="$m.state.user"
       v-model="leftDrawerOpen"
       show-if-above
       bordered
@@ -197,6 +198,12 @@ const tab = ref(''),
 const qs = useQuasar()
 
 const info = computed(() => {
+  if (!helper.state.user) {
+    return {
+      color: 'red',
+      letter: 'A'
+    }
+  }
   const roulet = ['red', 'purple-14', 'indigo-14', 'green']
   const nm = `${helper.state.user.nombres}${helper.state.user.email}`.replace(
     /\s/g,
@@ -234,6 +241,10 @@ const TopMenu = [
             icon: 'o_report_problem'
           }
         ]
+      },
+      {
+        roles: ['admin', 'seguridad', 'ssomac'],
+        items: [{ to: '/iai/home', label: 'Accidentes', icon: 'o_person' }]
       }
     ]
   },

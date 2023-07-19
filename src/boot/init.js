@@ -51,6 +51,7 @@ export default async (
           return
         }
         next({ path: '/login', query: { redirect: to.fullPath } })
+        // next({ path: '/sig' })
         return
       }
     } else {

@@ -1,7 +1,9 @@
 import { ref, reactive } from 'vue'
 import { Loading, LoadingBar, Notify, Cookies } from 'quasar'
 // const endPoint = process.env.NODE_ENV === 'development'? `http://192.168.0.5:8000/` : `https://mineria.gd.pe/api/`
-const endPoint = process.env.NODE_ENV === 'development' ? 'https://slim.gmi.gd.pe/' : 'https://slim.gmi.gd.pe/'
+let host = window.location.hostname
+host = (host === 'localhost') ? 'gmi.gd.pe' : host
+const endPoint = process.env.NODE_ENV === 'development' ? `https://slim.${host}/` : `https://slim.${host}/`
 
 import http from './http.js'
 http.defaults.baseURL = endPoint

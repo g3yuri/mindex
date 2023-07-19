@@ -12,20 +12,8 @@
           @click="toggleLeftDrawer"
         />
         <q-toolbar-title class="text-primary">
-          <div class="t-flex t-items-center">
-            <div class="t-flex t-items-center" @click="router.push('/')">
-              <img
-                src="~assets/logo-gmi.png"
-                style="width: 40px; height: 40px"
-              />
-              <div
-                class="t-pl-2 t-text-xl t-font-bold t-text-indigo-900 t-whitespace-pre-wrap"
-              >
-                {{ route.meta?.title ?? 'Sistema Integrado de Gestión GMI' }}
-              </div>
-            </div>
-          </div>
           <div class="t-flex t-items-center t-justify-between">
+            <img src="~assets/logo-gmi.png" style="width: 40px; height: 40px" />
             <div
               :class="`${
                 meta.title?.length > (meta?.btn ? 10 : 15) && qs.screen.lt.sm
@@ -33,11 +21,12 @@
                   : 'text-h2'
               } t-font-bold t-pr-6 t-text-ellipsis t-overflow-hidden`"
             >
-              {{ meta.title }}
+              {{ meta.title ?? 'Sistema Integrado de Gestión SSOMAC GMI' }}
             </div>
 
-            <div v-if="meta.btn" style="text-align: right">
+            <div style="text-align: right">
               <q-btn
+                v-if="meta.btn"
                 class="t-w-max"
                 unelevated
                 color="primary"
@@ -46,6 +35,13 @@
                 :to="meta.btn.to"
                 :flat="meta.btn.flat"
                 @click="meta?.btn?.click()"
+              />
+              <q-btn
+                v-else-if="!helper?.state?.user"
+                label="Login"
+                to="/login"
+                unelevated
+                color="primary"
               />
             </div>
           </div>

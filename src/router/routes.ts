@@ -1,6 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
+
   {
     path: '/f',
     component: () => import('layouts/FatigaLayout.vue'),
@@ -173,11 +174,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: 'home',
-        component: () => import('pages/iai/IAIHomeV2.vue'),
-        meta: {
-          title: 'Accidentes',
-          btn: { icon: 'o_add', label: 'Crear', to: '/iai/nuevo' }
-        }
+        component: () => import('pages/iai/IAIHomeV2.vue')
       },
       {
         path: 'nuevo',
@@ -645,6 +642,16 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
+      { path: '', component: () => import('pages/IndexPage.vue') }
+    ],
+    meta: {
+      guest: true
+    }
+  },
+  {
+    path: '/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
       {
         path: '/postulante/home',
         component: () => import('src/pages/postulante/PostulantesOnly.vue')
@@ -808,6 +815,7 @@ const routes: RouteRecordRaw[] = [
     }
   }
 ]
-import sig_routes from './sig-routes'
+// import sig_routes from './sig-routes'
 
-export default window.location.hostname === 'localhost' || window.location.hostname === 'gmi.neural.pe' ? sig_routes : routes
+// export default window.location.hostname === 'localhost' || window.location.hostname === 'gmi.neural.pe' ? sig_routes : routes
+export default routes

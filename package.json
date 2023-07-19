@@ -7,11 +7,11 @@
   "private": true,
   "scripts": {
     "dev": "quasar dev",
-    "build": "npm run build-pwa",
+    "build": "npm run build-spa",
     "test": "npx playwright test",
     "test-rep": "npx playwright show-report",
     "build-only": "quasar build",
-    "build-spa": "quasar build && rsync -zr --delete ./dist/spa/ ene:/www/wwwroot/gmi.gd.pe/spa/",
+    "build-spa": "quasar build -m spa && rsync -zr --delete --exclude=.well-known ./dist/spa/ ene:/www/wwwroot/gmi.gd.pe/spa/",
     "build-pwa": "quasar build -m pwa && rsync -zr --delete --exclude=.well-known ./dist/pwa/ ene:/www/wwwroot/gmi.gd.pe/pwa/",
     "icon-pwa": "icongenie g -m pwa -i ./src/assets/logo.png",
     "icon": "icongenie g -i ./src/assets/logo.png",

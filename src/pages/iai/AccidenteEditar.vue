@@ -2,7 +2,7 @@
   <q-page class="q-pa-md q-gutter-md">
     <m-loading ref="main">
       <div class="row items-center q-gutter-md">
-        <q-btn
+        <!-- <q-btn
           unelevated
           color="primary"
           flat
@@ -10,7 +10,7 @@
           icon="chevron_left"
           @click="$router.go(-1)"
         />
-        <q-space />
+        <q-space /> -->
         <q-btn
           v-if="acc_id"
           unelevated
@@ -20,17 +20,13 @@
           icon="delete"
           @click="pos_delete"
         />
-        <q-btn
+        <!-- <q-btn
           unelevated
           color="primary"
           :label="acc_id ? 'Actualizar' : 'Crear'"
           icon="save"
           @click="pos_store"
-        />
-      </div>
-
-      <div class="t-font-bold text-primary t-text-xl t-py-5">
-        ACCIDENTE / INCIDENTE
+        /> -->
       </div>
       <div class="col-12 t-p-5">
         <image-upload

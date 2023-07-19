@@ -30,9 +30,28 @@
         </div>
         <div class="col-sm-6 col-12">
           <a
+            href="https://gmiperu.sharepoint.com/:f:/s/ESTRUCTURASIGGMI/EpX44swiPFVGjUX6yH8O4FEBa1PDJ5-4IokX4MssJ_YWyg?e=wqoaeh"
+            target="_blank"
+            >Mapas de Riesgo</a
+          >
+          <p>
+            Los Mapas de riesgo se encuentran en proceso de actualización.
+
+            <a href="https://gmiperu.sharepoint.com/:f:/s/ESTRUCTURASIGGMI/Ehiq_kXFzCxEj15twlCnnxoB7gCe3hUTJKXiJyQWnQktwA" target="_blank">Versión 2022</a>
+          </p>
+        </div>
+        <div class="col-sm-6 col-12">
+          <a
+            href="https://gmiperu.sharepoint.com/:f:/s/ESTRUCTURASIGGMI/EnFV25Bc--BMv51Ebw5VZE4B9LWjChTLPzBsvkHu_HWCRQ"
+            target="_blank"
+            >Estandares Alpayana</a
+          >
+        </div>
+        <div class="col-sm-6 col-12">
+          <a
             href="https://gmiperu.sharepoint.com/sites/ESTRUCTURASIGGMI/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FESTRUCTURASIGGMI%2FDocumentos%20compartidos%2FESTRUCTURA%20SIG%20GMI%2F8%2E1%20PLANIFICACI%C3%93N%20Y%20CONTROL%20OPERACIONAL%2F3%2E%20Registros%2F2023%2F1%2E%20Estandares%2F2%2E%20Est%C3%A0ndares%20GMI%2F2%2E%20Vigentes&p=true&ct=1687192522938&or=OWA%2DNT&cid=3ea52f8c%2Dda8c%2D5cd2%2D6dcb%2D6bc59437a69f&ga=1"
             target="_blank"
-            >Estandares</a
+            >Estandares GMI</a
           >
         </div>
         <div class="col-sm-6 col-12">
@@ -47,6 +66,20 @@
             href="https://gmiperu.sharepoint.com/sites/ESTRUCTURASIGGMI/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FESTRUCTURASIGGMI%2FDocumentos%20compartidos%2FESTRUCTURA%20SIG%20GMI%2F8%2E1%20PLANIFICACI%C3%93N%20Y%20CONTROL%20OPERACIONAL%2F3%2E%20Registros%2F2023%2F5%2E%20Formatos&p=true&ct=1687192849789&or=OWA%2DNT&cid=859ba0f8%2D517b%2D134c%2D1af5%2D10298533ef93&ga=1"
             target="_blank"
             >Formatos</a
+          >
+        </div>
+        <div class="col-sm-6 col-12">
+          <a
+            href="https://gmiperu.sharepoint.com/:f:/s/ESTRUCTURASIGGMI/EvfrV_gbxjhBgaOQj-OV8dgBsbI9C87MKhiKSVrnLjq6Gw?e=YubZg9"
+            target="_blank"
+            >Protocolos de Respuesta a Emergencia Alpayana</a
+          >
+        </div>
+        <div class="col-sm-6 col-12">
+          <a
+            href="https://gmiperu.sharepoint.com/:x:/r/sites/ESTRUCTURASIGGMI/_layouts/15/Doc.aspx?sourcedoc=%7B75DF8517-048A-4629-9CDD-4C558BD7E20E%7D&file=FOR-SIG-001%20Lista%20maestra%20de%20documentos%20Internos%20GMI%2014-06.xlsx&action=default&mobileredirect=true"
+            target="_blank"
+            >Lista maestra de documentos</a
           >
         </div>
       </div>
@@ -83,13 +116,16 @@ onMounted(() => {})
 
 @layer components {
   .title-ssomac {
-    a {
-      @apply t-font-bold t-text-xl t-text-blue-800 t-bg-slate-200 t-px-4 t-py-2 t-rounded-md;
+    & > div > a {
+      @apply t-font-bold t-text-xl t-text-blue-800 t-bg-slate-200 t-px-4 t-py-2 t-rounded-md t-inline-block;
     }
     p {
-      @apply t-mt-4 t-text-slate-600 t-text-lg t-border-slate-200 t-border-l-4;
+      @apply t-mt-4 t-text-slate-600 t-text-lg t-border-slate-200 t-border-l-4 t-pl-4;
       ul{
-        @apply t-list-item t-ml-4
+        @apply t-list-disc t-ml-4
+      }
+      & > a{
+        @apply t-font-bold t-text-blue-800;
       }
     }
   }

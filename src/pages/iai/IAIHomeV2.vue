@@ -26,7 +26,12 @@
           <div
             v-for="(el, index) in list"
             :key="index"
-            class="t-w-full t-flex t-py-2"
+            class="col-12 col-sm-6 t-flex"
+            @click="
+              $m.state.user.roles.filter((e) => e.name == 'admin').length
+                ? router.push(`/iai/editar/${el.id}`)
+                : null
+            "
           >
             <div class="t-w-2/6 t-pr-1">
               <div class="t-flex t-items-center">
@@ -124,7 +129,16 @@ const route = useRoute(),
     'Octubre',
     'Noviembre',
     'Diciembre'
-  ])
+  ]),
+  meta = reactive({
+    title: 'Accidentes / Incidentes',
+    btn: {
+      icon: 'o_save',
+      label: 'Crear',
+      to: '/iai/nuevo'
+    }
+  })
+defineExpose({ meta })
 
 function editar(id) {
   router.push(`/iai/editar/${id}`)
