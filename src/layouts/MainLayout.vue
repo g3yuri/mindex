@@ -55,16 +55,16 @@
       class="t-bg-slate-100"
       :width="280"
     >
-      <div @click="router.push('/')">
+      <!-- <div @click="router.push('/')">
         <div
           class="t-w-full t-flex t-items-center t-justify-center t-py-4 t-cursor-pointer"
           @click="router.push('/')"
         >
           <img src="~assets/logo.png" style="width: 40px; height: 40px" />
-          <div class="t-pl-2 t-text-2xl t-font-bold">Mindex</div>
+          <div class="t-pl-2 t-text-2xl t-font-bold">Neural</div>
         </div>
-      </div>
-      <div class="panel-menu">
+      </div> -->
+      <div class="panel-menu t-pt-2">
         <q-list>
           <q-item clickable to="/perfil" :dense="false">
             <q-item-section avatar style="min-width: 36px">
@@ -110,6 +110,7 @@
                 dense
                 :label="section.title"
                 header-class="t-text-gray-500"
+                :default-opened="true"
               >
                 <!-- <q-item-label v-if="section.title" header
                   >{{ section.title }} XX</q-item-label
@@ -125,7 +126,7 @@
                     <q-icon :name="el.icon" size="sm" />
                   </q-item-section>
                   <q-item-section>
-                    <q-item-label>{{ el.label }}</q-item-label>
+                    <q-item-label lines="1">{{ el.label }}</q-item-label>
                   </q-item-section>
                 </q-item>
               </q-expansion-item>
@@ -293,6 +294,16 @@ const TopMenu = [
   {
     title: 'SISTEMA INTEGRADO DE GESTION',
     menu: [
+      {
+        roles: ['admin', 'seguridad'],
+        items: [
+          {
+            to: '/sig/seguimiento',
+            label: 'Seguimiento',
+            icon: 'o_picture_in_picture'
+          }
+        ]
+      },
       {
         roles: ['admin', 'supervisor'],
         items: [

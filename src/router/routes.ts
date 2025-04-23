@@ -315,6 +315,17 @@ const routes: RouteRecordRaw[] = [
       }
     ]
   },
+  {
+    path: '/sig',
+    component: () => import('layouts/MainLayout.vue'),
+    redirect: '/sig/seguimiento',
+    children: [
+      {
+        path: 'seguimiento',
+        component: () => import('pages/sistema/SigSeguimiento.vue')
+      }
+    ]
+  },
 
   {
     path: '/sso/veo',

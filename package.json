@@ -1,8 +1,8 @@
 {
   "name": "mindex",
   "version": "0.0.2",
-  "description": "Mindex Web",
-  "productName": "Mindex Web",
+  "description": "Neural App",
+  "productName": "Neural App",
   "author": "Yuri Quispe <g3yuri@gmail.com>",
   "private": true,
   "scripts": {

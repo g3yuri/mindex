@@ -12,7 +12,7 @@ register(process.env.SERVICE_WORKER_FILE, {
   // registrationOptions: { scope: './' },
 
   ready (/* registration */) {
-    // console.log('Service worker is active.')
+    console.log('Service worker is active.')
   },
 
   registered (/* registration */) {
@@ -28,7 +28,9 @@ register(process.env.SERVICE_WORKER_FILE, {
   },
 
   updated (/* registration */) {
-    // console.log('New content is available; please refresh.')
+    console.log('New content is available; please refresh.')
+    // window.location.reload()
+    // navigator.serviceWorker.controller.postMessage('skipWaitingAndReload')
   },
 
   offline () {

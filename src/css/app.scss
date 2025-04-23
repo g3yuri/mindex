@@ -23,7 +23,7 @@
       @apply t-py-0;
     }
     .q-list .q-item__label {
-      @apply t-text-xs t-font-bold t-py-2 t-pl-2;
+      @apply t-text-sm t-font-bold t-py-2 t-pl-0;
     }
     .q-list .q-item__section--avatar {
       @apply t-min-w-0 t-px-2;
@@ -33,12 +33,13 @@
       color: $primary;
     }
     .q-item.q-router-link--exact-active, .q-item.q-router-link--active {
+
       .q-icon {
         color: $primary !important;
       }
       .q-item__label {
         color: $primary !important;
-        @apply t-text-xs t-font-bold t-py-2 t-pl-2;
+        @apply t-text-sm t-font-bold t-py-2 t-pl-0;
       }
     }
   }
